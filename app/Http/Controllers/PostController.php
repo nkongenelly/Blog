@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\User;
 
 class PostController extends Controller
 {
@@ -13,6 +14,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $posts = Post::all();
@@ -45,8 +51,9 @@ class PostController extends Controller
             'body'=>'required',
             'category_id'=>'required'
         ]);
-
-        Post::create(request(['category_id','title','body']));
+            auth()->user()->publish(new Post(request(['category_id','title','body'])));
+            
+        // Post::create(request(['category_id','title','body']));
         return redirect('/posts');
     }
 
@@ -120,4 +127,6 @@ class PostController extends Controller
         ->delete();
         return redirect('/posts');
     }
+
+    
 }

@@ -14,6 +14,11 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
@@ -30,6 +35,9 @@ class CommentController extends Controller
         $this->validate(request(),[
             'body'=>'required'
         ]);
+        auth()->user->publishComment(
+            new Post(request(['body']))
+        );
         $post->addComment(request("body"));
         return back();
     }
