@@ -44,7 +44,7 @@ Route::get('/categories/delete/{id}', 'CategoryController@destroy');
 //comments
 Route::get('/posts/comments/{id}', 'PostController@comments');
 
-Route::post('/comments/{post}', 'CommentController@store');
+Route::post('/comments', 'CommentController@store');
 
 Route::patch('comments/{post}/{id}', 'CommentController@update');
 

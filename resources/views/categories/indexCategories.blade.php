@@ -14,6 +14,7 @@
 
         @foreach($categories as $category)
             <tr>
+                <td>{{ $category->id}}</td>
                 <td>{{ $category->parent}}</td>
                 <td>{{ $category->cName}}</td>
                 <td>{{ $category->created_at->toFormattedDateString()}}</td>

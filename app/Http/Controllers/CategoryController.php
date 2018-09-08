@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         $categories = Category::all();
@@ -32,7 +32,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.createCategories');
+        $categories= Category::all();
+        return view('categories.createCategories',compact('categories'));
     }
 
     /**

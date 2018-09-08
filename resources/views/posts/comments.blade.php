@@ -8,9 +8,10 @@ Add Comment
 <!-- Modal -->
 <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
-   <form action="/comments/{{$post->id}}" method="POST" class="form-horixontal">
+   <form action="/comments" method="POST" class="form-horixontal">
                 {{ csrf_field() }}
-        <div class="modal-content">
+                <input type="hidden" name="post_id" value="{{$post->id}}">
+            <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add {{$post->title}} Comment</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -41,6 +42,7 @@ Add Comment
                 <tr>
                     <th>#</th>
                     <th>Create</th>
+                    <th>Created By</th>
                     <th>Body</th>
                     <th colspan="3">Actions</th>
                 </tr>
@@ -48,6 +50,7 @@ Add Comment
                 <tr>
                     <td>{{ $comment->id }}</td>
                     <td>{{ $comment->created_at->diffForHumans() }}</td>
+                    <td>{{ $comment->user->name }}</td>
                     <td>{{ $comment->body }}</td>
                    
                     <td><!-- Button trigger modal -->

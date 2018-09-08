@@ -9,7 +9,7 @@
     <select name="category_id">
     @foreach($categories as $category)
         <option value="{{$category->id}}">
-            {{$category->parent}}
+            {{$category->cName}}
         </option>
         @endforeach
     </select>
